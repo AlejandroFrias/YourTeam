@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 
-import dj_database_url
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,7 +27,7 @@ SECRET_KEY = 'e4(+-919fpp(1_5k992nq4($v(vlqs@)7$#l*emn3op5(e(b9s'
 DEBUG = True
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,8 +78,12 @@ WSGI_APPLICATION = 'yourteam.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'yourteam',
+        'USER': 'dev_yourteam',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -98,18 +101,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Parse database configuration from $DATABASE_URL
-DATABASES['default'] = dj_database_url.config()
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-# Static asset configuration
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
